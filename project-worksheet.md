@@ -70,23 +70,60 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
 The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
 
-#### MVP EXAMPLE
-- Makes API calls and displays images from NAV, FHAZ, and RHAZ cameras on the screen
-- User can navigate the photos fuilidly and intuitively
+#### MVP
+- Makes API calls and displays images from NAVCAM, FHAZ, and RHAZ cameras
+- Makes API calls for photos from Curiosity, Opportunity, and Spirit rovers
+- User can navigate the photos fuilidly and intuitively using buttons
     - Next Photo / Previous Photo
     - Next Sol & Previous Sol buttons
-    - FHAZ & RHAZ buttons
+    - NAVCAM, FHAZ, & RHAZ buttons
+- User can switch between rovers using the hamburger menu
+- Onscreen text displays information about the current query
+    - Sol
+    - Earth Date
+- User can search for a Sol or Earth Date
 
-#### PostMVP EXAMPLE
+#### PostMVP
 
 - Add API calls for scientific cameras and corresponding UI buttons
     - MAST, CHEMCAM, MAHLI, MARDI, PANCAM, MINITES
 
 ## Components
-##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
+##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful. 
 
+| Component | Description | 
+| --- | :---: |  
+| App | sets up app with React Router
+| CurrentImage | displays the current image obtained from the API call
+| Menu (Hamburger) | allows the user to switch between rovers and access additional settings
+| NextSol & PreviousSol | buttons that allow the user to increment or decrement the Sol
+| Sol | displays the current sol being used in search queries; allows text input to search for a specific Sol
+| EarthDate | displays the earth date corresponding to the current Sol; allows text input to search for a specific Earth Date
+| NextPhoto & PreviousPhoto | increment or decrement the photo that matches the current query
+| Special Camera Buttons | display when images are available from special camreas; switches query to match special cameras
+| ToggleViewUI | a button that toggles the visibility of the UI
 
+Unless otherwise noted, time is listed in hours:
+
+| Component | Priority | Estimated Time | Time Invetsted | Actual Time |
+| --- | :---: |  :---: | :---: | :---: |
+| Create React app and files for all components | H | 0 | 0 | 40min
+| Build function to fetch data from the API based on current settings | 
+| Display current image fetched from the API | 
+| Build hamberger menu |
+| Build buttons (in menu) that switch between the rovers | 
+| Build NextSol & PreviousSol buttons and link them to the search query | 
+| Build display of current Sol |
+| Modify CurrentSol to accept user input |
+| Build display of current Earth Date | 
+| Modify CurrentEarthDate to accept user input |
+| Build NextPhoto & PreviousPhoto buttons | 
+| Build Special Camera Buttons | 
+| Build bubble counters that display count of images available | 
+| Built button to toggle the visiability of the UI | 
 
 ## Additional Libraries
+React
+Bootstrap
 
 ## Code Snippet
