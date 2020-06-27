@@ -107,20 +107,20 @@ Unless otherwise noted, time is listed in hours:
 
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Create React app and files for all components | H | 0 | 0 | 40min
-| Build function to fetch data from the API based on current settings | 
-| Display current image fetched from the API | 
-| Build hamberger menu |
-| Build buttons (in menu) that switch between the rovers | 
-| Build NextSol & PreviousSol buttons and link them to the search query | 
-| Build display of current Sol |
-| Modify CurrentSol to accept user input |
-| Build display of current Earth Date | 
-| Modify CurrentEarthDate to accept user input |
-| Build NextPhoto & PreviousPhoto buttons | 
-| Build Special Camera Buttons | 
-| Build bubble counters that display count of images available | 
-| Built button to toggle the visiability of the UI | 
+| Create React app and files for all components | H | 1.5 | 1 | -
+| Build function to fetch data from the API based on current settings | H | 2 | - | - |
+| Display current image fetched from the API | H | 0.5 | - | - |
+| Build hamberger menu | H | 0.75 | - | - |
+| Build buttons (in menu) that switch between the rovers | H | 2 | - | - |
+| Build NextSol & PreviousSol buttons and link them to the search query | H | 1 | - | - |
+| Build display of current Sol | H | 1 | - | - |
+| Modify CurrentSol to accept user input | M | 4 | - | - |
+| Build display of current Earth Date | L | 0.5 | - | - |
+| Modify CurrentEarthDate to accept user input | L | 4 | - | - |
+| Build NextPhoto & PreviousPhoto buttons | H | 2 | - | - |
+| Build Special Camera Buttons (with unique logos) | M | 6 | - | - |
+| Build bubble counters that display count of images available | L | 3 | - | - |
+| Build button to toggle the visiability of the UI | L | 1 | - | - |
 
 ## Additional Libraries
 React
