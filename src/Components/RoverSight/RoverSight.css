@@ -1,0 +1,8 @@
+.rover-sight {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(https://mars.nasa.gov/system/resources/detail_files/25058_PIA23900-web.jpg);
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+}
