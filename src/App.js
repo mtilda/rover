@@ -1,11 +1,15 @@
 import React from 'react';
-import RoverSight from './Components/RoverSight/RoverSight'
+import { Switch, Route, Redirect } from 'react-router-dom';
+import RoverSight from './Components/RoverSight/RoverSight';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <RoverSight />
+      <Switch>
+        <Route path='/' render={() => <RoverSight /> }/>
+        <Route path='*' render={() => <Redirect to='/' /> }/>
+      </Switch>
     </div>
   );
 }
