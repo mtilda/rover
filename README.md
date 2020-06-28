@@ -1,3 +1,14 @@
+## Setup ##
+
+To clone this repo onto your local device,
+1. Clone this repo with `git clone https://github.com/mxkay/rover.git`
+2. Install dependencies with `npm install react-router-dom react-bootstrap`
+4. Get an API key from https://api.nasa.gov/
+3. Add your API key to the .config file in the main directory. This file should look like this:
+```
+    export const api_key = 'YOUR_API_KEY';
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
