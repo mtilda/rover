@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import NextSol from '../NextSol/NextSol';
 import './RoverSight.css';
 
 import {api_key} from '../../.credentials';
@@ -18,7 +19,7 @@ const RoverSight = () => {
 
     return (
         <div className='rover-sight' style={{backgroundImage: `url(${currentImage})`}}>
-            
+            <NextSol />
         </div>
     )
 }
