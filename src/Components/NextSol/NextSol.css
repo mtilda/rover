@@ -1,0 +1,9 @@
+.next-sol {
+    border: 1px solid gold;
+}
+
+.next-sol > img {
+    z-index: 1000;
+    max-width: 100%;
+    max-height: 100%;
+}
