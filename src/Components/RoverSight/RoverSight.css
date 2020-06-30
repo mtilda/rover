@@ -10,6 +10,4 @@
     height: 100vh;
     background-size: cover;
     background-position: center;
-    /* always the background */
-    z-index: -1000;
 }

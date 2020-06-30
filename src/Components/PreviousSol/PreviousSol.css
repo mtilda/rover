@@ -1,11 +1,8 @@
 .previous-sol {
-    position: relative;
     grid-area: bottom;
-    align-content: center;
 }
 
 .previous-sol > img {
-    z-index: 1000;
     max-width: 100%;
     max-height: 100%;
     transform: rotate(180deg);

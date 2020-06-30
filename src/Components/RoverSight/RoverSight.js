@@ -10,12 +10,6 @@ const RoverSight = () => {
     const [currentQuery, setCurrentQuery] = useState({rover: 'curiosity', sol: 1000, camera: 'NAVCAM', page: 1});
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // const fetchImages = async () => {
-    //     const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${currentQuery.rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
-    //     const json = await res.json();
-    //     setCurrentImage(json.photos[currentIndex].img_src);
-    // }
-
     useEffect(() => {
         const fetchImages = async () => {
             const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${currentQuery.rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
@@ -23,20 +17,36 @@ const RoverSight = () => {
             setCurrentImage(json.photos[currentIndex].img_src);
         }
         fetchImages()
-    },[]);
+    },[currentQuery, currentIndex]);
+
+
+    const fetchImages = async () => {
+        const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${currentQuery.rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
+        const json = await res.json();
+        setCurrentImage(json.photos[currentIndex].img_src);
+    }
 
     const nextSol = () => {
-        console.log('next sol')
         let newQuery = currentQuery;
         newQuery.sol++;
         setCurrentQuery(newQuery);
+        fetchImages();
+    }
+
+    const previousSol = () => {
+        let newQuery = currentQuery;
+        newQuery.sol++;
+        setCurrentQuery(newQuery);
+        fetchImages();
     }
 
     return (
+        <>
         <div className='rover-sight' style={{backgroundImage: `url(${currentImage})`}}>
-            <NextSol />
-            <PreviousSol />
+            <NextSol nextSol={nextSol} />
+            <PreviousSol previousSol={previousSol}/>
         </div>
+        </>
     )
 }
 
