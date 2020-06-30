@@ -1,5 +1,7 @@
 .previous-sol {
-    border: 1px solid gold;
+    position: relative;
+    grid-area: bottom;
+    align-content: center;
 }
 
 .previous-sol > img {

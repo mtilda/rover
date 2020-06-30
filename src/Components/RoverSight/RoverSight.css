@@ -1,4 +1,8 @@
 .rover-sight {
+    display: grid;
+    grid-template-areas:    'top-left       top             top-right'
+                            'left           center          right'
+                            'bottom-left    bottom          bottom-right';
     position: relative;
     width: 100vw;
     height: 100vh;

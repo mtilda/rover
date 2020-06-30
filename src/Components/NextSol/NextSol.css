@@ -1,5 +1,5 @@
 .next-sol {
-    border: 1px solid gold;
+    grid-area: top;
 }
 
 .next-sol > img {
