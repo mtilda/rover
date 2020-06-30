@@ -3,6 +3,8 @@
     grid-template-areas:    'top-left       top             top-right'
                             'left           center          right'
                             'bottom-left    bottom          bottom-right';
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 15% 70% 15%;
     position: relative;
     width: 100vw;
     height: 100vh;
