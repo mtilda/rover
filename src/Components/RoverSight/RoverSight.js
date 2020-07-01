@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import NextSol from '../NextSol/NextSol';
 import PreviousSol from '../PreviousSol/PreviousSol';
 import NextImage from '../NextImage/NextImage'
+import PreviousImage from '../PreviousImage/PreviousImage'
 import './RoverSight.css';
 
 import {api_key} from '../../.credentials';
@@ -118,6 +119,7 @@ const RoverSight = ({rover, fetchManifest}) => {
             <NextSol nextSol={nextSol} />
             <PreviousSol previousSol={previousSol} />
             <NextImage />
+            <PreviousImage />
         </div>
     )
 }
