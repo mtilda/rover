@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Info from '../Info/Info';
 import NextSol from '../NextSol/NextSol';
 import PreviousSol from '../PreviousSol/PreviousSol';
 import NextImage from '../NextImage/NextImage'
@@ -132,6 +133,7 @@ const RoverSight = ({rover, getManifest}) => {
                     currentImages[currentIndex].img_src:
                     'https://mars.nasa.gov/system/resources/detail_files/25058_PIA23900-web.jpg'})`}} // NASA/JPL-Caltech
         >
+            <Info qRover={rover} query={currentQuery} photoData={currentImages[currentIndex]} index={currentIndex} imageCount={currentImages.length} />
             <NextSol nextSol={nextSol} />
             <PreviousSol previousSol={previousSol} />
             <NextImage nextImage={nextImage} />
