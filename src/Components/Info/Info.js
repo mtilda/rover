@@ -3,7 +3,6 @@ import './Info.css';
 
 const Info = ({qRover, query, photoData, index, imageCount}) => {
     const {rover, camera, sol, earth_date} = photoData?photoData:{rover: qRover, camera:  'not available', sol: -1, earth_date: 'not available'};
-    console.log(photoData);
     return (
         <div className='info'>
             {
