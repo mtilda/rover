@@ -5,48 +5,74 @@ import './RoverSight.css';
 
 import {api_key} from '../../.credentials';
 
-const RoverSight = () => {
-    const [currentImage, setCurrentImage] = useState('https://mars.nasa.gov/system/resources/detail_files/25058_PIA23900-web.jpg');
-    const [currentQuery, setCurrentQuery] = useState({rover: 'curiosity', sol: 1000, camera: 'NAVCAM', page: 1});
+const RoverSight = ({rover, fetchManifest}) => {
+    const [manifest, updateManifest] = useState({});
+    const [currentImages, setcurrentImages] = useState([]);
+    const [currentQuery, setCurrentQuery] = useState({sol: 10, camera: 'NAVCAM', page: 0});
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // on mount
     useEffect(() => {
-        const fetchImages = async () => {
-            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${currentQuery.rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
+        fetchManifest(rover).then((response) => updateManifest(response));
+
+        const getImages = async () => {
+            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
             const json = await res.json();
-            setCurrentImage(json.photos[currentIndex].img_src);
+            setcurrentImages(json.photos);
         }
-        fetchImages()
-    },[currentQuery, currentIndex]);
+        getImages()
+    },[])
 
 
-    const fetchImages = async () => {
-        const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${currentQuery.rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
-        const json = await res.json();
-        setCurrentImage(json.photos[currentIndex].img_src);
+    // get the image that matches the current query and set it to the current image
+    const getImages = async query => {
+        console.log('query: ', query);
+        console.log('url: ', `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${api_key}`);
+        const fetchImages = async () => {
+            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${api_key}`);
+            const json = await res.json();
+            return json.photos;
+        }
+
+        let callCount = 0;
+        let newImages = await fetchImages();
+        while(!newImages.length && callCount<5) {
+            newImages = await fetchImages();
+            callCount++;
+        }
+        return newImages;
+
     }
 
-    const nextSol = () => {
+    // increment sol and get new images
+    const nextSol = async () => {
         let newQuery = currentQuery;
         newQuery.sol++;
         setCurrentQuery(newQuery);
-        fetchImages();
+        const newImages = await getImages(newQuery);
+        setcurrentImages(newImages);
     }
 
-    const previousSol = () => {
+    // decrement sol and get new images
+    const previousSol = async () => {
         let newQuery = currentQuery;
-        newQuery.sol++;
+        newQuery.sol--;
         setCurrentQuery(newQuery);
-        fetchImages();
+        const newImages = await getImages(newQuery);
+        setcurrentImages(newImages);
     }
 
     return (
-        <>
-        <div className='rover-sight' style={{backgroundImage: `url(${currentImage})`}}>
+        <div
+            className='rover-sight'
+            style={{backgroundImage: `url(${
+                currentImages.length?
+                    currentImages[currentIndex].img_src:
+                    'https://mars.nasa.gov/system/resources/detail_files/25058_PIA23900-web.jpg'})`}} // NASA/JPL-Caltech
+        >
             <NextSol nextSol={nextSol} />
-            <PreviousSol previousSol={previousSol}/>
+            <PreviousSol previousSol={previousSol} />
         </div>
-        </>
     )
 }
 
