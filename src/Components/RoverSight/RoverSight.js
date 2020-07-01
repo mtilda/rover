@@ -108,6 +108,26 @@ const RoverSight = ({rover, fetchManifest}) => {
         setcurrentImages(newImages);
     }
 
+    // increment image index
+    const nextImage = () => {
+        if (currentIndex < currentImages.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        }
+        else {
+            setCurrentIndex(0);
+        }
+    }
+
+    // decrement image index
+    const previousImage = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+        else {
+            setCurrentIndex(currentImages.length - 1);
+        }
+    }
+
     return (
         <div
             className='rover-sight'
@@ -118,8 +138,8 @@ const RoverSight = ({rover, fetchManifest}) => {
         >
             <NextSol nextSol={nextSol} />
             <PreviousSol previousSol={previousSol} />
-            <NextImage />
-            <PreviousImage />
+            <NextImage nextImage={nextImage} />
+            <PreviousImage previousImage={previousImage} />
         </div>
     )
 }
