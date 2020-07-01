@@ -28,8 +28,6 @@ const RoverSight = ({rover, fetchManifest}) => {
 
     // get the image that matches the current query and set it to the current image
     const getImages = async query => {
-        console.log('query: ', query);
-        console.log('url: ', `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${api_key}`);
         const fetchImages = async () => {
             const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${api_key}`);
             const json = await res.json();
@@ -83,8 +81,6 @@ const RoverSight = ({rover, fetchManifest}) => {
 
     // check if camera is available on this sol
     const checkCamera = query => {
-        console.log('cams: ', manifest.photos[query.sol].cameras);
-        console.log('checkCamera: ', query.camera, manifest.photos[query.sol].cameras.includes(query.camera))
         return manifest.photos[query.sol].cameras.includes(query.camera);
     }
 
