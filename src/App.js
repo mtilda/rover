@@ -16,9 +16,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path='/curiosity' render={() => <RoverSight rover='curiosity' getManifest={getManifest} /> }/>
-        <Route path='/opportunity' render={() => <RoverSight rover='opportunity' getManifest={getManifest} /> }/>
-        <Route path='/spirit' render={() => <RoverSight rover='spirit' getManifest={getManifest} /> }/>
+        <Route path='/curiosity' render={() => <RoverSight rover='Curiosity' getManifest={getManifest} /> }/>
+        <Route path='/opportunity' render={() => <RoverSight rover='Opportunity' getManifest={getManifest} /> }/>
+        <Route path='/spirit' render={() => <RoverSight rover='Spirit' getManifest={getManifest} /> }/>
         <Route path='*' render={() => <Redirect to='/curiosity' /> }/>
       </Switch>
     </div>
