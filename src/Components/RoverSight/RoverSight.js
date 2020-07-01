@@ -7,7 +7,7 @@ import './RoverSight.css';
 
 import {api_key} from '../../.credentials';
 
-const RoverSight = ({rover, fetchManifest}) => {
+const RoverSight = ({rover, getManifest}) => {
     const [manifest, updateManifest] = useState({});
     const [currentImages, setcurrentImages] = useState([]);
     const [currentQuery, setCurrentQuery] = useState({sol: 10, camera: 'NAVCAM', page: 0});
@@ -15,7 +15,7 @@ const RoverSight = ({rover, fetchManifest}) => {
 
     // on mount
     useEffect(() => {
-        fetchManifest(rover).then((response) => updateManifest(response));
+        getManifest(rover).then((response) => updateManifest(response));
 
         const getImages = async () => {
             const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
