@@ -44,10 +44,53 @@ const RoverSight = ({rover, fetchManifest}) => {
 
     }
 
+    // check the manifest for any available cameras
+    const scanCameras = query => {
+        let newQuery = query;
+        const cameras = manifest.photos[query.sol].cameras;
+        
+        if (cameras.includes('NAVCAM')) {
+            newQuery.camera = 'NAVCAM';
+        }
+        else if (cameras.includes('FHAZ')) {
+            newQuery.camera = 'FHAZ';
+        }
+        else if (cameras.includes('RHAZ')) {
+            newQuery.camera = 'RHAZ';
+        }
+        else if (cameras.includes('MAST')) {
+            newQuery.camera = 'MAST';
+        }
+        else if (cameras.includes('PANCAM')) {
+            newQuery.camera = 'PANCAM';
+        }
+        else if (cameras.includes('CHEMCAM')) {
+            newQuery.camera = 'CHEMCAM';
+        }
+        else if (cameras.includes('MAHLI')) {
+            newQuery.camera = 'MAHLI';
+        }
+        else if (cameras.includes('MINITES')) {
+            newQuery.camera = 'MINITES';
+        }
+        else if (cameras.includes('MARDI')) {
+            newQuery.camera = 'MARDI';
+        }
+        return newQuery;
+    }
+
+    // check if camera is available on this sol
+    const checkCamera = query => {
+        console.log('cams: ', manifest.photos[query.sol].cameras);
+        console.log('checkCamera: ', query.camera, manifest.photos[query.sol].cameras.includes(query.camera))
+        return manifest.photos[query.sol].cameras.includes(query.camera);
+    }
+
     // increment sol and get new images
     const nextSol = async () => {
         let newQuery = currentQuery;
         newQuery.sol++;
+        if(!checkCamera(newQuery)) newQuery = scanCameras(newQuery);
         setCurrentQuery(newQuery);
         const newImages = await getImages(newQuery);
         setcurrentImages(newImages);
@@ -57,6 +100,7 @@ const RoverSight = ({rover, fetchManifest}) => {
     const previousSol = async () => {
         let newQuery = currentQuery;
         newQuery.sol--;
+        if(!checkCamera(newQuery)) newQuery = scanCameras(newQuery);
         setCurrentQuery(newQuery);
         const newImages = await getImages(newQuery);
         setcurrentImages(newImages);
