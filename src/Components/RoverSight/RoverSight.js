@@ -102,6 +102,7 @@ const RoverSight = ({rover, getManifest}) => {
 
     // increment sol and get new images
     const nextSol = async () => {
+        setCurrentIndex(0);
         let newQuery = currentQuery;
         newQuery.sol++;
         if(!checkCamera(newQuery)) newQuery = scanCameras(newQuery);
@@ -112,6 +113,7 @@ const RoverSight = ({rover, getManifest}) => {
 
     // decrement sol and get new images
     const previousSol = async () => {
+        setCurrentIndex(0);
         let newQuery = currentQuery;
         newQuery.sol--;
         if(!checkCamera(newQuery)) newQuery = scanCameras(newQuery);
@@ -144,7 +146,7 @@ const RoverSight = ({rover, getManifest}) => {
         <div
             className='rover-sight'
             style={{backgroundImage: `url(${
-                currentImages[0]?
+                currentImages[currentIndex]?
                     currentImages[currentIndex].img_src:
                     'https://mars.nasa.gov/system/resources/detail_files/25058_PIA23900-web.jpg'})`}} // NASA/JPL-Caltech
         >
