@@ -27,7 +27,7 @@ const RoverSight = ({rover, getManifest}) => {
     },[])
 
 
-    // get the image that matches the current query and set it to the current image
+    // get the array of images that match the current query and set that array to currentImages
     const getImages = async query => {
         const fetchImages = async () => {
             const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${api_key}`);
