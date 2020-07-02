@@ -19,9 +19,9 @@ const Menu = () => {
             {menu?
             <div className={`menu-container`}>
                 <div className='rover-button-wrapper'>
-                    <Link onClick={handleClick} style={{ textDecoration: 'none' }} to='curiosity'><div className='rover-button'>Curiosity</div></Link>
-                    <Link onClick={handleClick} style={{ textDecoration: 'none' }} to='opportunity'><div className='rover-button'>Opportunity</div></Link>
-                    <Link onClick={handleClick} style={{ textDecoration: 'none' }} to='spirit'><div className='rover-button'>Spirit</div></Link>
+                    <Link onClick={handleClick} style={{ textDecoration: 'none' }} to='curiosity/bounce'><div className='rover-button'>Curiosity</div></Link>
+                    <Link onClick={handleClick} style={{ textDecoration: 'none' }} to='opportunity/bounce'><div className='rover-button'>Opportunity</div></Link>
+                    <Link onClick={handleClick} style={{ textDecoration: 'none' }} to='spirit/bounce'><div className='rover-button'>Spirit</div></Link>
                 </div>
             </div>:<></>}
         </>

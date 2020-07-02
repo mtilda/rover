@@ -18,10 +18,13 @@ function App() {
     <div className="App">
       <Menu />
       <Switch>
-        <Route path='/curiosity' render={() => <RoverSight rover='Curiosity' getManifest={getManifest} /> }/>
-        <Route path='/opportunity' render={() => <RoverSight rover='Opportunity' getManifest={getManifest} /> }/>
-        <Route path='/spirit' render={() => <RoverSight rover='Spirit' getManifest={getManifest} /> }/>
-        <Route path='*' render={() => <Redirect to='/curiosity' /> }/>
+        <Route exact path='/curiosity'          render={() => <RoverSight rover='Curiosity' getManifest={getManifest} /> }/>
+        <Route exact path='/opportunity'        render={() => <RoverSight rover='Opportunity' getManifest={getManifest} /> }/>
+        <Route exact path='/spirit'             render={() => <RoverSight rover='Spirit' getManifest={getManifest} /> }/>
+        <Route exact path='/curiosity/bounce'   render={() => <Redirect to='/curiosity' /> }/>
+        <Route exact path='/opportunity/bounce' render={() => <Redirect to='/opportunity' /> }/>
+        <Route exact path='/spirit/bounce'      render={() => <Redirect to='/spirit' /> }/>
+        <Route path='*'                   render={() => <Redirect to='/curiosity' /> }/>
       </Switch>
     </div>
   );

@@ -40,7 +40,6 @@ const RoverSight = ({rover, getManifest}) => {
             callCount++;
         }
         return newImages;
-
     }
 
     // check the manifest for any available cameras
