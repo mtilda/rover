@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import RoverSelect from './Components/RoverSelect/RoverSelect';
 import RoverSight from './Components/RoverSight/RoverSight';
 import './App.css';
 
@@ -17,17 +18,19 @@ function App() {
 
   return (
     <div className="App">
-      <Link to='/menu' className='hamburger' onClick={() => setMenu(!menu)}>
+      <div className='menu-button' onClick={() => setMenu(!menu)}>
         <div className={`${menu?'ex ':''}bar1`}></div>
         <div className={`${menu?'ex ':''}bar2`}></div>
         <div className={`${menu?'ex ':''}bar3`}></div>
-      </Link>
-      <Switch>
-        <Route path='/curiosity' render={() => <RoverSight rover='Curiosity' getManifest={getManifest} /> }/>
-        <Route path='/opportunity' render={() => <RoverSight rover='Opportunity' getManifest={getManifest} /> }/>
-        <Route path='/spirit' render={() => <RoverSight rover='Spirit' getManifest={getManifest} /> }/>
-        <Route path='*' render={() => <Redirect to='/curiosity' /> }/>
-      </Switch>
+      </div>
+      {menu?<RoverSelect />:
+        <Switch>
+          <Route path='/curiosity' render={() => <RoverSight rover='Curiosity' getManifest={getManifest} /> }/>
+          <Route path='/opportunity' render={() => <RoverSight rover='Opportunity' getManifest={getManifest} /> }/>
+          <Route path='/spirit' render={() => <RoverSight rover='Spirit' getManifest={getManifest} /> }/>
+          <Route path='*' render={() => <Redirect to='/curiosity' /> }/>
+        </Switch>
+      }
     </div>
   );
 }
