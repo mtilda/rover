@@ -6,12 +6,10 @@ import NextImage from '../NextImage/NextImage'
 import PreviousImage from '../PreviousImage/PreviousImage'
 import './RoverSight.css';
 
-import {api_key} from '../../.credentials';
-
 const RoverSight = ({rover, getManifest}) => {
     const [manifest, updateManifest] = useState({});
     const [currentImages, setcurrentImages] = useState([]);
-    const [currentQuery, setCurrentQuery] = useState({sol: 10, camera: 'NAVCAM', page: 0});
+    const [currentQuery, setCurrentQuery] = useState({sol: 104, camera: 'NAVCAM', page: 0});
     const [currentIndex, setCurrentIndex] = useState(0);
 
     // on mount
@@ -19,7 +17,7 @@ const RoverSight = ({rover, getManifest}) => {
         getManifest(rover).then((response) => updateManifest(response));
 
         const getImages = async () => {
-            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${api_key}`);
+            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${process.env.REACT_APP_API_KEY}`);
             const json = await res.json();
             setcurrentImages(json.photos);
         }
@@ -30,7 +28,7 @@ const RoverSight = ({rover, getManifest}) => {
     // get the array of images that match the current query and set that array to currentImages
     const getImages = async query => {
         const fetchImages = async () => {
-            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${api_key}`);
+            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${process.env.REACT_APP_API_KEY}`);
             const json = await res.json();
             return json.photos;
         }

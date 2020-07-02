@@ -42,7 +42,7 @@
 .menu-button {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   z-index: 1000;
   cursor: pointer;
   padding: 5px;

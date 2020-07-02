@@ -4,14 +4,14 @@ import RoverSelect from './Components/RoverSelect/RoverSelect';
 import RoverSight from './Components/RoverSight/RoverSight';
 import './App.css';
 
-import {api_key} from './.credentials';
-
 function App() {
   const [menu, setMenu] = useState(false);
 
+  console.log('key: ', process.env.REACT_APP_API_KEY);
+
   // get the manifest for the current rover
   const getManifest = async (rover) => {
-    const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${api_key}`);
+    const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${process.env.REACT_APP_API_KEY}`);
     const json = await res.json();
     return json.photo_manifest;
   }
