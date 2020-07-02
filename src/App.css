@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+/* START HAMBURGER ICON */
+
+.hamburger {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(256, 256, 256, 0.25);
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 3px;
+  transition: 0.4s;
+}
+
+.ex.bar1 {
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.ex.bar2 {opacity: 0;}
+
+.ex.bar3 {
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/* END HAMBURGER ICON */
