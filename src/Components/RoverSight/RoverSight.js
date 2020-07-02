@@ -144,7 +144,7 @@ const RoverSight = ({rover, getManifest}) => {
         <div
             className='rover-sight'
             style={{backgroundImage: `url(${
-                currentImages.length?
+                currentImages[0]?
                     currentImages[currentIndex].img_src:
                     'https://mars.nasa.gov/system/resources/detail_files/25058_PIA23900-web.jpg'})`}} // NASA/JPL-Caltech
         >
