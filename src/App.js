@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
-import RoverSelect from './Components/RoverSelect/RoverSelect';
+import Menu from './Components/Menu/Menu';
 import RoverSight from './Components/RoverSight/RoverSight';
 import './App.css';
 
@@ -23,7 +23,7 @@ function App() {
         <div className={`${menu?'ex ':''}bar2`}></div>
         <div className={`${menu?'ex ':''}bar3`}></div>
       </div>
-      {menu?<RoverSelect />:
+      {menu?<Menu />:
         <Switch>
           <Route path='/curiosity' render={() => <RoverSight rover='Curiosity' getManifest={getManifest} /> }/>
           <Route path='/opportunity' render={() => <RoverSight rover='Opportunity' getManifest={getManifest} /> }/>

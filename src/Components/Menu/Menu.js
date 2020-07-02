@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './RoverSelect.css';
+import './Menu.css';
 
-const RoverSelect = () => {
+const Menu = () => {
     return (
         <>
             <Link to='curiosity'><div>Curiosity</div></Link>
@@ -12,4 +12,4 @@ const RoverSelect = () => {
     );
 }
 
-export default RoverSelect;
+export default Menu;
