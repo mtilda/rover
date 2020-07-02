@@ -107,23 +107,36 @@ Unless otherwise noted, time is listed in hours:
 
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Create React app and files for all components | H | 1.5 | 1 | -
-| Build function to fetch data from the API based on current settings | H | 2 | - | - |
-| Display current image fetched from the API | H | 0.5 | - | - |
-| Build hamberger menu | H | 0.75 | - | - |
-| Build buttons (in menu) that switch between the rovers | H | 2 | - | - |
-| Build NextSol & PreviousSol buttons and link them to the search query | H | 1 | - | - |
-| Build display of current Sol | H | 1 | - | - |
-| Modify CurrentSol to accept user input | M | 4 | - | - |
-| Build display of current Earth Date | L | 0.5 | - | - |
-| Modify CurrentEarthDate to accept user input | L | 4 | - | - |
-| Build NextPhoto & PreviousPhoto buttons | H | 2 | - | - |
+| Create React app and files for initial components | H | 1.5 | - | 2
+| Build function to fetch data from the API based on current settings | H | 2 | - | 4 |
+| Display current image fetched from the API | H | 0.5 | - | 2 |
+| Build hamberger menu | H | 0.75 | - | 1.5 |
+| Build buttons (in menu) that switch between the rovers | H | 2 | - | 2 |
+| Build NextSol & PreviousSol buttons and link them to the search query | H | 6 | - | 12 |
+| Build NextPhoto & PreviousPhoto buttons | H | 2 | - | 2 |
+| Build display of current Rover, Camera Sol, Earth Date, & Image Index | H | 1 | - | 4 |
+| Modify current sol and current earth date to accept user input | M | 4 | - | - |
 | Build Special Camera Buttons (with unique logos) | M | 6 | - | - |
 | Build bubble counters that display count of images available | L | 3 | - | - |
 | Build button to toggle the visiability of the UI | L | 1 | - | - |
+| Total | | | | 29.5 |
 
 ## Additional Libraries
 React
 Bootstrap
 
 ## Code Snippet
+
+This function handles when the user clicks the NextSol button. It resets the current image index to 0, increments the current Sol by 1, checks if the current camera is available (if not, scans for a new one), and makes an API call for images based on the new query.
+```
+// increment sol and get new images
+const nextSol = async () => {
+    setCurrentIndex(0);
+    let newQuery = currentQuery;
+    newQuery.sol++;
+    if(!checkCamera(newQuery)) newQuery = scanCameras(newQuery);
+    setCurrentQuery(newQuery);
+    const newImages = await getImages(newQuery);
+    setcurrentImages(newImages);
+}
+```
