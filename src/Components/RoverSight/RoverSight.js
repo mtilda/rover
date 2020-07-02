@@ -48,9 +48,11 @@ const RoverSight = ({rover, getManifest}) => {
     // check the manifest for any available cameras
     const scanCameras = query => {
         let newQuery = query;
-        const cameras = manifest.photos[query.sol].cameras;
+        const manifestIndex = indexOfSol(query.sol);
+        const cameras = manifestIndex>=0?manifest.photos[manifestIndex].cameras:null;
         
-        if (cameras.includes('NAVCAM')) {
+        if (!cameras);
+        else if (cameras.includes('NAVCAM')) {
             newQuery.camera = 'NAVCAM';
         }
         else if (cameras.includes('FHAZ')) {
@@ -80,9 +82,22 @@ const RoverSight = ({rover, getManifest}) => {
         return newQuery;
     }
 
+    // get the index of the given Sol in the manifest
+    const indexOfSol = sol => {
+        let index = 0;
+        for( ; index <= manifest.photos.length - 1 && manifest.photos[index].sol !== sol; index++ );
+        return index<manifest.photos.length?index:-1;
+    }
+
     // check if camera is available on this sol
     const checkCamera = query => {
-        return manifest.photos[query.sol].cameras.includes(query.camera);
+        const manifestIndex = indexOfSol(query.sol);
+        if (manifestIndex>=0) {
+            return manifest.photos[manifestIndex].cameras.includes(query.camera);
+        }
+        else {
+            return false;
+        }
     }
 
     // increment sol and get new images
