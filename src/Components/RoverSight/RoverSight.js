@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Info from '../Info/Info';
 import NextSol from '../NextSol/NextSol';
 import PreviousSol from '../PreviousSol/PreviousSol';
@@ -17,8 +18,8 @@ export default ({ rover, getManifest }) => {
     getManifest(rover).then((response) => updateManifest(response));
 
     const getImages = async () => {
-      const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${process.env.REACT_APP_API_KEY}`);
-      const json = await res.json();
+      const res = await axios(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${currentQuery.sol}&camera=${currentQuery.camera}&page=${currentQuery.page}&api_key=${process.env.REACT_APP_API_KEY}`);
+      const json = res.data;
       setcurrentImages(json.photos);
     };
     getImages();
@@ -27,8 +28,8 @@ export default ({ rover, getManifest }) => {
   // get the array of images that match the current query and set that array to currentImages
   const getImages = async query => {
     const fetchImages = async () => {
-      const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${process.env.REACT_APP_API_KEY}`);
-      const json = await res.json();
+      const res = await axios(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${query.sol}&camera=${query.camera}&page=${query.page}&api_key=${process.env.REACT_APP_API_KEY}`);
+      const json = res.data;
       return json.photos;
     };
 

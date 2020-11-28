@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Menu from './Components/Menu/Menu';
 import RoverSight from './Components/RoverSight/RoverSight';
@@ -9,8 +10,8 @@ export default () => {
 
   // get the manifest for the current rover
   const getManifest = async (rover) => {
-    const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${process.env.REACT_APP_API_KEY}`);
-    const json = await res.json();
+    const res = await axios(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${process.env.REACT_APP_API_KEY}`);
+    const json = res.data;
     return json.photo_manifest;
   };
 
